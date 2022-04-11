@@ -1,0 +1,62 @@
+#app {
+  .app-wrapper {
+    padding-top: $topBarHeight;
+  }
+  .topbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1002;
+    height: $topBarHeight;
+    width: 100%;
+    .topbar {
+      height: $topBarHeight;
+      display: flex;
+      justify-content: space-between;
+      .left {
+        display: flex;
+        align-items: center;
+        color:#fff;
+        .logo {
+          float: left;
+          cursor: pointer;
+          img {
+            display: block;
+            margin: 10px 15px;
+            width: 50px;
+            height:auto
+          }
+        }
+        .title{
+          float: left;
+          cursor: pointer;
+          color: #009688;
+        }
+        .el-menu {
+          float: left;
+          border-bottom: 0;
+          .el-submenu__icon-arrow {
+            display: inline-block;
+          }
+          .el-submenu__title {
+            border-bottom: none!important;
+          }
+        }
+      }
+      .right {
+        .el-dropdown{
+          color: #000;
+        }
+        .ctrl {
+          display: flex;
+          padding: 0 15px;
+          align-items: center;
+          height: $topBarHeight;
+          .username {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
