@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="classObj"
-    class="app-wrapper"
-  >
+  <div class="app-wrapper">
     <h1>Layout</h1>
     <div class="topbar-container">
       <Topbar />
@@ -33,5 +30,4 @@ import { Topbar, Siderbar } from './components/index'
 export default class layout extends Vue {}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
