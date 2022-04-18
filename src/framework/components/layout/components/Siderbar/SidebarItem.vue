@@ -77,11 +77,14 @@ export default defineComponent({
       default: false
     }
   },
-  get alwaysShowRootMenu () {
-    if (this.item.meta && this.item.meta.alwaysShow) {
-      return true
-    }
-    return false
+  // get alwaysShowRootMenu () {
+  //   if (this.item.meta && this.item.meta.alwaysShow) {
+  //     return true
+  //   }
+  //   return false
+  // },
+  created () {
+    console.log('isCollapse 324', this.isCollapse)
   },
   methods: {
     alwaysShowRootMenu () {
@@ -197,16 +200,4 @@ export default defineComponent({
     background-color: $menuHover !important;
   }
 }
-</style>
-
-<style lang="scss" scoped>
-/* .svg-icon {
-  margin-right: 16px;
-}
-
-.simple-mode {
-  .svg-icon {
-    margin-left: 20px;
-  }
-} */
 </style>

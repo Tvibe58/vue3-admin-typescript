@@ -1,7 +1,8 @@
 #app {
   // 主体区域 Main container
   .main-container {
-    min-height: 100%;
+    // min-height: calc(100vh - $topBarHeight);
+    min-height: calc(100vh - 60px);
     transition: margin-left 0.28s;
     margin-left: $sideBarWidth;
     position: relative;
@@ -32,8 +33,7 @@
 
     //reset element-ui css
     .horizontal-collapse-transition {
-      transition: 0s width ease-in-out, 0s padding-left ease-in-out,
-        0s padding-right ease-in-out;
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
     }
 
     .scrollbar-wrapper {
@@ -80,6 +80,7 @@
       .svg-icon {
         margin-right: 6px;
         font-size: 16px;
+        min-width: 16px;
       }
 
       .el-sub-menu {
@@ -130,11 +131,16 @@
       }
     }
 
+    .el-menu-item > .el-menu-tooltip__trigger,
+    .el-sub-menu__title {
+      padding-left: 10px !important;
+    }
+
     .el-sub-menu {
       overflow: hidden;
 
       & > .el-sub-menu__title {
-        padding-left: 10px !important;
+        // padding-left: 10px !important;
 
         .el-sub-menu__icon-arrow {
           display: none;

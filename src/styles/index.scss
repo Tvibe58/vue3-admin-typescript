@@ -1,7 +1,6 @@
 @import './variables.scss';
 // @import './mixin.scss';
 @import './transition.scss';
-// @import './element-ui.scss';
 @import './sidebar.scss';
 @import './topbar.scss';
 
@@ -12,6 +11,7 @@ html {
 
 body {
   font-size: 16px;
+  margin: 0;
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

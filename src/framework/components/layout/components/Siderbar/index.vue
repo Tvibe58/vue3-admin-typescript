@@ -18,21 +18,35 @@
         :is-collapse="isCollapse"
       />
     </el-menu>
+    <div class="collapse">
+      <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" />
+    </div>
   </el-scrollbar>
 </template>
 
 <script lang="ts">
 import variables from '@/styles/variables.scss'
 import SidebarItem from './SidebarItem.vue'
+import { AppModule } from '@/store/modules/app'
 import { defineComponent } from 'vue'
+import Hamburger from '@/framework/components/Hamburger/index.vue'
 export default defineComponent({
   name: 'SidebarItemLink',
-  components: { SidebarItem },
+  components: {
+    SidebarItem,
+    Hamburger
+  },
   data () {
     return {
-      color: 'orange',
-      isCollapse: false,
       variables: variables
+    }
+  },
+  computed: {
+    sidebar () {
+      return AppModule.sidebar
+    },
+    isCollapse () {
+      return !AppModule.sidebar.opened
     }
   },
   methods: {
@@ -45,24 +59,46 @@ export default defineComponent({
         } else newRoute.push(route)
       })
       return newRoute
+    },
+    toggleSideBar () {
+      AppModule.ToggleSideBar(false)
     }
   }
 })
 </script>
-<style lang="scss" scoped>
-.el-scrollbar {
-  height: 100%;
-}
-
-.has-logo {
-  .el-scrollbar {
-    height: calc(100% - 50px);
+<style lang="scss">
+.scrollbar-wrapper {
+  .collapse {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 10px 0;
+    .com-hamburger {
+      display: inline-block;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.3s;
+      &:hover {
+        background: #35485d;
+      }
+      svg {
+        fill: #fff;
+      }
+    }
   }
+}
+</style>
+<style lang="scss" scoped>
+/* .el-scrollbar {
+  height: 100%;
 }
 
 .el-menu {
   border: none;
   height: 100%;
   width: 100% !important;
-}
+} */
 </style>

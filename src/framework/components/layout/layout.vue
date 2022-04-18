@@ -1,33 +1,40 @@
 <template>
-  <div class="app-wrapper">
-    <h1>Layout</h1>
+  <div
+    :class="{
+      hideSidebar: !sidebar.opened,
+      openSidebar: sidebar.opened,
+      withoutAnimation: sidebar.withoutAnimation,
+      mobile: device === 'mobile'
+    }"
+    class="app-wrapper"
+  >
     <div class="topbar-container">
       <Topbar />
     </div>
     <Siderbar class="sidebar-container" />
-    <router-view class="app-container" />
+    <div class="main-container">
+      <router-view class="app-container" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-// import { defineComponent } from 'vue'
-// import { Topbar } from './components'
-// export default defineComponent({
-//   components: {
-//     Topbar
-//   }
-//   // 已启用类型推断
-// })
-import { Options, Vue } from 'vue-class-component'
+import { defineComponent } from 'vue'
+import { AppModule } from '@/store/modules/app'
 import { Topbar, Siderbar } from './components/index'
-
-@Options({
+export default defineComponent({
+  name: 'SidebarItemLink',
   components: {
     Topbar,
     Siderbar
+  },
+  computed: {
+    sidebar () {
+      return AppModule.sidebar
+    },
+    device () {
+      return ''
+    }
   }
 })
-export default class layout extends Vue {}
 </script>
-
-<style lang="scss" scoped></style>
