@@ -77,12 +77,6 @@ export default defineComponent({
       default: false
     }
   },
-  // get alwaysShowRootMenu () {
-  //   if (this.item.meta && this.item.meta.alwaysShow) {
-  //     return true
-  //   }
-  //   return false
-  // },
   created () {
     console.log('isCollapse 324', this.isCollapse)
   },
