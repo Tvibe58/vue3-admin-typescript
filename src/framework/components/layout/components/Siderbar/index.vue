@@ -19,7 +19,10 @@
       />
     </el-menu>
     <div class="collapse">
-      <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" />
+      <hamburger
+        :toggle-click="toggleSideBar"
+        :is-active="sidebar.opened"
+      />
     </div>
   </el-scrollbar>
 </template>
@@ -90,15 +93,4 @@ export default defineComponent({
     }
   }
 }
-</style>
-<style lang="scss" scoped>
-/* .el-scrollbar {
-  height: 100%;
-}
-
-.el-menu {
-  border: none;
-  height: 100%;
-  width: 100% !important;
-} */
 </style>
