@@ -3,11 +3,15 @@ import Home from '../views/Home.vue'
 import Layout from '../framework/components/layout/layout.vue'
 
 const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home
-  // },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/account/Login.vue'),
+    meta: {
+      title: '登录',
+      icon: 'example'
+    }
+  },
   // {
   //   path: '/about',
   //   name: 'About',

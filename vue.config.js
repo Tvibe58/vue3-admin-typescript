@@ -1,12 +1,28 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path')
 module.exports = {
+  devServer: {
+    disableHostCheck: true,
+    proxy: {
+      '/uaa/': {
+        target: 'http://test.seeksdata.com',
+        changeOrigin: true
+      },
+      '/veeker/': {
+        target: 'http://api-test.veekers.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/veeker': '/veeker/'
+        }
+      }
+    }
+  },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
       patterns: [
-        path.resolve(__dirname, 'src/styles/variables.scss'),
-        path.resolve(__dirname, 'src/styles/mixins.scss')
+        path.resolve(__dirname, 'src/styles/variables.scss')
+        // path.resolve(__dirname, 'src/styles/mixins.scss')
       ]
     }
   },

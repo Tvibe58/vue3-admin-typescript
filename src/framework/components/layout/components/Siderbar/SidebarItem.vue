@@ -6,13 +6,11 @@
       { 'first-level': isFirstLevel }
     ]"
   >
-    <template
-      v-if="
+    <template v-if="
         !alwaysShowRootMenu() &&
         theOnlyOneChild() &&
         !theOnlyOneChild().children
-      "
-    >
+      ">
       <sidebar-item-link
         v-if="theOnlyOneChild().meta"
         :to="resolvePath(theOnlyOneChild().path)"
@@ -25,15 +23,25 @@
             v-if="theOnlyOneChild().meta.icon"
             :name="theOnlyOneChild().meta.icon"
           />
-          <template v-if="theOnlyOneChild().meta.title" #title>
+          <template
+            v-if="theOnlyOneChild().meta.title"
+            #title
+          >
             {{ theOnlyOneChild().meta.title }}
           </template>
         </el-menu-item>
       </sidebar-item-link>
     </template>
-    <el-sub-menu v-else :index="resolvePath(item.path)" popper-append-to-body>
+    <el-sub-menu
+      v-else
+      :index="resolvePath(item.path)"
+      popper-append-to-body
+    >
       <template #title>
-        <SvgIcon v-if="item.meta && item.meta.icon" :name="item.meta.icon" />
+        <SvgIcon
+          v-if="item.meta && item.meta.icon"
+          :name="item.meta.icon"
+        />
         <span v-if="item.meta && item.meta.title">{{ item.meta.title }}</span>
       </template>
       <template v-if="item.children">
