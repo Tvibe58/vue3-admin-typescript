@@ -86,7 +86,7 @@ async function sendRequest(name: string, data = '') {
 }
 
 export default {
-  install: function(app: any) {
+  install: function (app: any) {
     // app.config.globalProperties.$api = api
     // Vue.prototype.$api = (name: string, data: any) => sendRequest(name, data)
     app.config.globalProperties.$api = (name: string, data: any) => sendRequest(name, data)

@@ -8,7 +8,7 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(
-  async(config: any) => {
+  async (config: any) => {
     if (!config.unAuth) {
       await storage.getItem('OAuthToken').then(token => {
         console.log(token)

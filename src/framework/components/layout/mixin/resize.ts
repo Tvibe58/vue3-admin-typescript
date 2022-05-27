@@ -6,32 +6,32 @@ const WIDTH = 992 // refer to Bootstrap's responsive design
 export default defineComponent({
   name: 'ResizeMixin',
   computed: {
-    sidebar () {
+    sidebar() {
       return AppModule.sidebar
     },
-    device () {
+    device() {
       return AppModule.device
     }
   },
   watch: {
-    $route () {
+    $route() {
       if (this.device === DeviceType.Mobile && this.sidebar.opened) {
         AppModule.CloseSideBar(false)
       }
     }
   },
-  beforeMount () {
+  beforeMount() {
     window.addEventListener('resize', this.resizeHandler)
   },
-  beforeUnmount () {
+  beforeUnmount() {
     window.removeEventListener('resize', this.resizeHandler)
   },
   methods: {
-    isMobile () {
+    isMobile() {
       const rect = document.body.getBoundingClientRect()
       return rect.width - 1 < WIDTH
     },
-    resizeHandler () {
+    resizeHandler() {
       if (!document.hidden) {
         const isMobile = this.isMobile()
         AppModule.ToggleDevice(
