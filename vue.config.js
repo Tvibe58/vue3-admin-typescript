@@ -8,12 +8,9 @@ module.exports = {
         target: 'http://test.seeksdata.com',
         changeOrigin: true
       },
-      '/veeker/': {
+      '/veeker-admin/': {
         target: 'http://api-test.veekers.cn',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/veeker': '/veeker/'
-        }
+        changeOrigin: true
       }
     }
   },

@@ -27,16 +27,13 @@
           maxlength="6"
         >
           <template v-slot:append>
-            <img
-              :src="verifyImg"
-              class="number-code"
-              @click="changeNumCode"
-            />
-            <!-- <img
-              :src="`/veeker-admin/backend/login/image/${form.uid}`"
-              class="number-code"
-              @click="changeNumCode"
-            /> -->
+            <div class="code-wrapper">
+              <img
+                :src="`/veeker-admin/backend/login/image/${form.uid}`"
+                class="number-code"
+                @click="changeNumCode"
+              />
+            </div>
           </template>
         </el-input>
       </el-form-item>
@@ -90,12 +87,6 @@ export default defineComponent({
     changeNumCode () {
       console.log('click')
       this.form.uid = uuidv4().replace(/-/g, '')
-      this.changeVerifyImg()
-    },
-    changeVerifyImg () {
-      this.$api('user.verifyImg', this.form.uid).then((res: any) => {
-        console.log('res', res)
-      })
     }
   }
 })
@@ -114,9 +105,26 @@ export default defineComponent({
     width: 400px;
     max-width: 100%;
     padding: 35px 35px 15px 35px;
+    box-shadow: 0px 1px 12px #6e6d6d96;
     margin: 200px auto 0;
     background: #fff;
     border-radius: 4px;
+    .code-wrapper {
+      display: flex;
+      align-items: center;
+      img {
+        cursor: pointer;
+      }
+    }
+  }
+}
+</style>
+<style lang="scss">
+.app-login {
+  .el-form-item {
+    .el-input-group__append {
+      padding: 0;
+    }
   }
 }
 </style>

@@ -5,12 +5,5 @@ export default {
     method: 'POST',
     url: '',
     unAuth: true
-  },
-  verifyImg: {
-    name: 'user.verifyImg',
-    description: '图形验证码',
-    method: 'PUT',
-    url: '/veeker-admin/backend/login/image',
-    unAuth: true
   }
 }

@@ -23,9 +23,6 @@ Object.keys(Icons).forEach(key => {
   app.component(key, Icons[key as keyof typeof Icons])
 })
 
-// 在原型上扩展,这样不用在每个页面都导入request
-// app.config.globalProperties.$api = api
-
 app
   .use(ElementPlus, {
     locale: zhCn
