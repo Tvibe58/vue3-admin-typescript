@@ -2,15 +2,15 @@ import request from './request'
 import list from '@/api/entry'
 import { ElMessage } from 'element-plus'
 
-interface Target {
-  name: string,
-  url: string,
-  unAuth: boolean,
-  method: string,
-  [propName: string]: any
-}
+// interface Target {
+//   name: string,
+//   url: string,
+//   unAuth: boolean,
+//   method: string,
+//   [propName: string]: any
+// }
 
-function getTarget (name: any) {
+function getTarget(name: any) {
   let target: any = list
   name.split('.').forEach((item: any) => {
     if (!target[item]) console.error(`'${name}' was not found in api module`)
@@ -20,7 +20,7 @@ function getTarget (name: any) {
   return target
 }
 
-async function sendRequest (name: string, data = '') {
+async function sendRequest(name: string, data = '') {
   const target: any = getTarget(name)
   if (!target.url) throw new Error(`Invalid property 'url' of '${name}'`)
 
@@ -86,7 +86,7 @@ async function sendRequest (name: string, data = '') {
 }
 
 export default {
-  install: function (app: any) {
+  install: function(app: any) {
     // app.config.globalProperties.$api = api
     // Vue.prototype.$api = (name: string, data: any) => sendRequest(name, data)
     app.config.globalProperties.$api = (name: string, data: any) => sendRequest(name, data)

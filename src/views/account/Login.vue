@@ -55,7 +55,7 @@ export default defineComponent({
   name: 'Login',
   components: {
   },
-  data () {
+  data() {
     return {
       form: {
         name: '',
@@ -79,12 +79,12 @@ export default defineComponent({
       }
     }
   },
-  created () {
+  created() {
     // console.log('api', this.$api)
     // console.log('uuid', uuidv4().replace(/-/g, ''))
   },
   methods: {
-    changeNumCode () {
+    changeNumCode() {
       console.log('click')
       this.form.uid = uuidv4().replace(/-/g, '')
     }

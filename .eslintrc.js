@@ -17,6 +17,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': ['off'],
     'space-before-function-paren': [2, 'always'],
-    // 'space-before-function-paren': ['error', 'never']
+    'space-before-function-paren': ['error', 'never']
   }
 }

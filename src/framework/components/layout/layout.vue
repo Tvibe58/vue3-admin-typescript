@@ -31,10 +31,10 @@ export default defineComponent({
   },
   mixins: [ResizeMixin],
   computed: {
-    sidebar () {
+    sidebar() {
       return AppModule.sidebar
     },
-    device () {
+    device() {
       return ''
     }
   }

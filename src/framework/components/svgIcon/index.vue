@@ -24,7 +24,7 @@ export default defineComponent({
       default: '#000'
     }
   },
-  setup (props) {
+  setup(props) {
     return {
       props
     }

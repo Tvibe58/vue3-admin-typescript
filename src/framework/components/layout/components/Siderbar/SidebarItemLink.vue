@@ -18,7 +18,7 @@ export default defineComponent({
     }
   },
   methods: {
-    checkExternal (url: string) {
+    checkExternal(url: string) {
       return isExternal(url)
     }
   }

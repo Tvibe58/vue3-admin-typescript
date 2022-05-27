@@ -85,17 +85,17 @@ export default defineComponent({
       default: false
     }
   },
-  created () {
+  created() {
     console.log('isCollapse 324', this.isCollapse)
   },
   methods: {
-    alwaysShowRootMenu () {
+    alwaysShowRootMenu() {
       if (this.item.meta && this.item.meta.alwaysShow) {
         return true
       }
       return false
     },
-    showingChildNumber () {
+    showingChildNumber() {
       if (this.item.children) {
         const showingChildren = this.item.children.filter((item: any) => {
           if (item.meta && item.meta.hidden) {
@@ -108,7 +108,7 @@ export default defineComponent({
       }
       return 0
     },
-    theOnlyOneChild () {
+    theOnlyOneChild() {
       if (this.showingChildNumber() > 1) {
         return null
       }
@@ -123,7 +123,7 @@ export default defineComponent({
       // because this.basePath already conatins item's path information
       return { ...this.item, path: '' }
     },
-    resolvePath (routePath: string) {
+    resolvePath(routePath: string) {
       if (isExternal(routePath)) {
         return routePath
       }

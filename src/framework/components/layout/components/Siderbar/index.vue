@@ -39,21 +39,21 @@ export default defineComponent({
     SidebarItem,
     Hamburger
   },
-  data () {
+  data() {
     return {
       variables: variables
     }
   },
   computed: {
-    sidebar () {
+    sidebar() {
       return AppModule.sidebar
     },
-    isCollapse () {
+    isCollapse() {
       return !AppModule.sidebar.opened
     }
   },
   methods: {
-    routes () {
+    routes() {
       // 重构
       let newRoute: any = []
       this.$router.options.routes.forEach((route: any) => {
@@ -63,7 +63,7 @@ export default defineComponent({
       })
       return newRoute
     },
-    toggleSideBar () {
+    toggleSideBar() {
       AppModule.ToggleSideBar(false)
     }
   }

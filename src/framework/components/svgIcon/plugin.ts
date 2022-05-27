@@ -1,7 +1,7 @@
 import SvgIcon from '@/framework/components/svgIcon/index.vue'
 
 const componentPlugin: any = {
-  install: function (vue: any, options: any) {
+  install: function(vue: any, options: any) {
     if (
       options &&
       options.imports &&
