@@ -1,35 +1,36 @@
 <template>
   <div class="app-login">
     <el-form
-      :model="form"
+      :model="loginForm"
       :rules="rules"
+      ref="loginFormRef"
       label-position="top"
       label-width="80px"
       class="login-form"
       size="large"
     >
-      <el-form-item>
+      <el-form-item prop="username">
         <el-input
-          v-model="form.name"
+          v-model="loginForm.username"
           placeholder="用户名"
         />
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="password">
         <el-input
-          v-model="form.password"
+          v-model="loginForm.password"
           placeholder="密码"
         />
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="imageCode">
         <el-input
-          v-model="form.imageCode"
+          v-model="loginForm.imageCode"
           placeholder="图形验证码"
           maxlength="6"
         >
           <template v-slot:append>
             <div class="code-wrapper">
               <img
-                :src="`/veeker-admin/backend/login/image/${form.uid}`"
+                :src="`/veeker-admin/backend/login/image/${loginForm.uid}`"
                 class="number-code"
                 @click="changeNumCode"
               />
@@ -42,6 +43,8 @@
           type="primary"
           color="#009688"
           style="width:100%;"
+          :loading="loading"
+          @click="handleLogin(loginFormRef)"
         >登录</el-button>
       </el-form-item>
     </el-form>
@@ -49,44 +52,65 @@
 </template>
 
 <script lang="ts">
+import type { FormInstance } from 'element-plus'
 import { v4 as uuidv4 } from 'uuid'
-import { defineComponent } from 'vue'
+import { defineComponent, ref, reactive } from 'vue'
+import storage from 'localforage'
 export default defineComponent({
   name: 'Login',
   components: {
   },
-  data() {
+  setup() {
+    // 在 setup() 函数中，不需要将类型传递给 props 参数，因为它将从 props 组件选项推断类型。
+    const loginFormRef = ref<FormInstance>()
+    const loginForm = reactive({
+      username: '',
+      password: '',
+      imageCode: '',
+      uid: uuidv4().replace(/-/g, '')
+    })
+    const rules = reactive({
+      username: [
+        { required: true, message: '请输入账号', trigger: 'blur' }
+      ],
+      password: [
+        { required: true, message: '请输入密码', trigger: 'blur' },
+        { min: 6, message: '请输入6位以上的密码', trigger: 'blur' }
+      ],
+      imageCode: [
+        { required: true, message: '请输入图形验证码', trigger: 'blur' },
+        { min: 4, message: '请输入4位以上的图形验证码', trigger: 'blur' }
+      ]
+    })
+    const loading = ref(false)
     return {
-      form: {
-        name: '',
-        password: '',
-        imageCode: '',
-        uid: uuidv4().replace(/-/g, '')
-      },
-      verifyImg: '12',
-      rules: {
-        username: [
-          { required: true, message: '请输入账号', trigger: 'blur' }
-        ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, message: '请输入6位以上的密码', trigger: 'blur' }
-        ],
-        imageCode: [
-          { required: true, message: '请输入图形验证码', trigger: 'blur' },
-          { min: 4, message: '请输入4位以上的图形验证码', trigger: 'blur' }
-        ]
-      }
+      loginFormRef,
+      loginForm,
+      rules,
+      loading
     }
-  },
-  created() {
-    // console.log('api', this.$api)
-    // console.log('uuid', uuidv4().replace(/-/g, ''))
   },
   methods: {
     changeNumCode() {
-      console.log('click')
-      this.form.uid = uuidv4().replace(/-/g, '')
+      this.loginForm.uid = uuidv4().replace(/-/g, '')
+    },
+    handleLogin(formEL: FormInstance | undefined) {
+      if (!formEL) return
+      formEL.validate(validate => {
+        if (validate) {
+          this.loading = true
+          this.$api('user.login', this.loginForm).then((res: any) => {
+            this.loading = false
+            storage.setItem('OAuthToken', res.data.access_token)
+            this.$router.push({ path: '/' })
+          }).catch(() => {
+            this.loading = false
+          })
+        } else {
+          console.log('error submit')
+          return false
+        }
+      })
     }
   }
 })
