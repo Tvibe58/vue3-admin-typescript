@@ -90,6 +90,11 @@
           }
         }
       }
+      .el-menu-item {
+        &:hover {
+          background-color: $menuHover;
+        }
+      }
     }
 
     .submenu-title-noDropdown,
@@ -108,8 +113,11 @@
         background-color: $subMenuHover !important;
       }
     }
+    & .el-sub-menu .is-active {
+      background-color: $subMenuHover !important;
+    }
     .nest-menu > .router-link-exact-active .is-active {
-      background-color: $menuHover !important;
+      background-color: $menuActiveBg !important;
     }
   }
 

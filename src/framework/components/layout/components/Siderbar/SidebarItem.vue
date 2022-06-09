@@ -159,7 +159,10 @@ export default defineComponent({
     color: $menuActiveText !important;
   }
   .is-active {
-    background-color: $menuHover !important;
+    background-color: $menuActiveBg !important;
+    .el-sub-menu__title {
+      background-color: $menuHover !important;
+    }
   }
 }
 
@@ -199,7 +202,10 @@ export default defineComponent({
     color: $menuActiveText !important;
   }
   .is-active {
-    background-color: $menuHover !important;
+    background-color: $menuActiveBg !important;
+    .el-sub-menu__title {
+      background-color: $menuHover !important;
+    }
   }
 }
 </style>
