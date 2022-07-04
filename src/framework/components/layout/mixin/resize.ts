@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
-import { AppModule, DeviceType } from '@/store/modules/app'
+import { DeviceType } from '@/store/modules/app'
+import { store } from '@/store'
 
 const WIDTH = 992 // refer to Bootstrap's responsive design
 
@@ -7,16 +8,16 @@ export default defineComponent({
   name: 'ResizeMixin',
   computed: {
     sidebar() {
-      return AppModule.sidebar
+      return this.$store.state.app.sidebar
     },
     device() {
-      return AppModule.device
+      return this.$store.state.app.device
     }
   },
   watch: {
     $route() {
       if (this.device === DeviceType.Mobile && this.sidebar.opened) {
-        AppModule.CloseSideBar(false)
+        store.dispatch('CloseSideBar', true)
       }
     }
   },
@@ -34,11 +35,9 @@ export default defineComponent({
     resizeHandler() {
       if (!document.hidden) {
         const isMobile = this.isMobile()
-        AppModule.ToggleDevice(
-          isMobile ? DeviceType.Mobile : DeviceType.Desktop
-        )
+        store.dispatch('ToggleDevice', isMobile ? DeviceType.Mobile : DeviceType.Desktop)
         if (isMobile) {
-          AppModule.CloseSideBar(true)
+          store.dispatch('CloseSideBar', true)
         }
       }
     }

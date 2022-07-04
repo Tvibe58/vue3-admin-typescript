@@ -44,7 +44,7 @@
           color="#009688"
           style="width:100%;"
           :loading="loading"
-          @click="handleLogin(loginFormRef)"
+          @click.prevent="handleLogin(loginFormRef)"
         >登录</el-button>
       </el-form-item>
     </el-form>
@@ -55,7 +55,6 @@
 import type { FormInstance } from 'element-plus'
 import { v4 as uuidv4 } from 'uuid'
 import { defineComponent, ref, reactive } from 'vue'
-import storage from 'localforage'
 export default defineComponent({
   name: 'Login',
   components: {
@@ -99,12 +98,12 @@ export default defineComponent({
       formEL.validate(validate => {
         if (validate) {
           this.loading = true
-          this.$api('user.login', this.loginForm).then((res: any) => {
+          this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
-            storage.setItem('OAuthToken', res.data.access_token)
             this.$router.push({ path: '/' })
           }).catch(() => {
             this.loading = false
+            this.changeNumCode()
           })
         } else {
           console.log('error submit')

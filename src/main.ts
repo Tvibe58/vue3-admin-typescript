@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import { store, key } from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/index.css'
 import * as Icons from '@element-plus/icons-vue'
@@ -9,12 +9,16 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import '@/styles/index.scss'
 import plugin from '@/framework/components/svgIcon/plugin'
 import api from '@/framework/modules/api/make'
+import { Store } from 'vuex'
+import { TypeAllState } from '@/store/type'
 
 const app = createApp(App)
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    $api: any
+    $api: any,
+    // 为 `this.$store` 提供类型声明
+    $store: Store<TypeAllState>
   }
 }
 
@@ -31,6 +35,6 @@ app
     imports: []
   })
   .use(api)
-  .use(store)
+  .use(store, key)
   .use(router)
   .mount('#app')

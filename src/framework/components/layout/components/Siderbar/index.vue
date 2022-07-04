@@ -30,7 +30,6 @@
 <script lang="ts">
 import variables from '@/styles/variables.scss'
 import SidebarItem from './SidebarItem.vue'
-import { AppModule } from '@/store/modules/app'
 import { defineComponent } from 'vue'
 import Hamburger from '@/framework/components/Hamburger/index.vue'
 export default defineComponent({
@@ -46,10 +45,10 @@ export default defineComponent({
   },
   computed: {
     sidebar() {
-      return AppModule.sidebar
+      return this.$store.state.app.sidebar
     },
     isCollapse() {
-      return !AppModule.sidebar.opened
+      return !this.$store.state.app.sidebar.opened
     }
   },
   methods: {
@@ -64,7 +63,7 @@ export default defineComponent({
       return newRoute
     },
     toggleSideBar() {
-      AppModule.ToggleSideBar(false)
+      this.$store.dispatch('ToggleSideBar', false)
     }
   }
 })

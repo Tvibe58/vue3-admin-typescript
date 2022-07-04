@@ -85,9 +85,6 @@ export default defineComponent({
       default: false
     }
   },
-  created() {
-    console.log('isCollapse 324', this.isCollapse)
-  },
   methods: {
     alwaysShowRootMenu() {
       if (this.item.meta && this.item.meta.alwaysShow) {

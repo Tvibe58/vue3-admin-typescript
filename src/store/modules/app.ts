@@ -1,90 +1,63 @@
-import {
-  VuexModule,
-  Module,
-  Mutation,
-  Action,
-  getModule
-} from 'vuex-module-decorators'
+import { Module } from 'vuex'
+import { TypeRootState } from '@/store/type'
+import Cookies from 'js-cookie'
 import {
   getSidebarStatus,
   getSize,
   setSidebarStatus,
   setSize
 } from '@/utils/cookies'
-import store from '@/store'
-
 export enum DeviceType {
   Mobile,
   Desktop
 }
 
-export interface IAppState {
-  device: DeviceType
+export interface TypeModuleStateApps {
+  device: DeviceType;
   sidebar: {
     opened: boolean
     withoutAnimation: boolean
-  }
+  };
   size: string
 }
 
-@Module({ dynamic: true, store, name: 'app' })
-class App extends VuexModule implements IAppState {
-  public sidebar = {
-    opened: getSidebarStatus() !== 'closed',
-    withoutAnimation: false
-  }
-
-  public device = DeviceType.Desktop
-  public size = getSize() || 'medium'
-
-  @Mutation
-  private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
-    this.sidebar.opened = !this.sidebar.opened
-    this.sidebar.withoutAnimation = withoutAnimation
-    if (this.sidebar.opened) {
-      setSidebarStatus('opened')
-    } else {
-      setSidebarStatus('closed')
+export const moduleApps: Module<TypeModuleStateApps, TypeRootState> = {
+  state: () => ({
+    device: DeviceType.Desktop,
+    sidebar: {
+      opened: getSidebarStatus() !== '0',
+      withoutAnimation: false
+    },
+    size: 'medium'
+  }),
+  mutations: {
+    TOGGLE_SIDEBAR: (state, withoutAnimation: boolean) => {
+      state.sidebar.opened = !state.sidebar.opened
+      state.sidebar.withoutAnimation = withoutAnimation
+      if (state.sidebar.opened) {
+        setSidebarStatus('1')
+      } else {
+        setSidebarStatus('0')
+      }
+    },
+    CLOSE_SIDEBAR: (state, withoutAnimation: boolean) => {
+      Cookies.set('sidebarStatus', '1')
+      state.sidebar.opened = false
+      state.sidebar.withoutAnimation = withoutAnimation
+    },
+    TOGGLE_DEVICE: (state, device: DeviceType) => {
+      state.device = device
+    }
+  },
+  actions: {
+    ToggleSideBar: ({ commit }, withoutAnimation: boolean) => {
+      commit('TOGGLE_SIDEBAR', withoutAnimation)
+    },
+    CloseSideBar({ commit }, withoutAnimation: boolean) {
+      commit('CLOSE_SIDEBAR', withoutAnimation)
+    },
+    ToggleDevice({ commit }, device: DeviceType) {
+      commit('TOGGLE_DEVICE', device)
     }
   }
-
-  @Mutation
-  private CLOSE_SIDEBAR(withoutAnimation: boolean) {
-    this.sidebar.opened = false
-    this.sidebar.withoutAnimation = withoutAnimation
-    setSidebarStatus('closed')
-  }
-
-  @Mutation
-  private TOGGLE_DEVICE(device: DeviceType) {
-    this.device = device
-  }
-
-  @Mutation
-  private SET_SIZE(size: string) {
-    this.size = size
-    setSize(this.size)
-  }
-
-  @Action
-  public ToggleSideBar(withoutAnimation: boolean) {
-    this.TOGGLE_SIDEBAR(withoutAnimation)
-  }
-
-  @Action
-  public CloseSideBar(withoutAnimation: boolean) {
-    this.CLOSE_SIDEBAR(withoutAnimation)
-  }
-
-  @Action
-  public ToggleDevice(device: DeviceType) {
-    this.TOGGLE_DEVICE(device)
-  }
-
-  @Action
-  public SetSize(size: string) {
-    this.SET_SIZE(size)
-  }
 }
-
-export const AppModule = getModule(App)

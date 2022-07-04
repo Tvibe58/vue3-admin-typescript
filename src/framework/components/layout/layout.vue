@@ -20,7 +20,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { AppModule } from '@/store/modules/app'
 import { Topbar, Siderbar } from './components/index'
 import ResizeMixin from './mixin/resize'
 export default defineComponent({
@@ -32,7 +31,7 @@ export default defineComponent({
   mixins: [ResizeMixin],
   computed: {
     sidebar() {
-      return AppModule.sidebar
+      return this.$store.state.app.sidebar
     },
     device() {
       return ''
