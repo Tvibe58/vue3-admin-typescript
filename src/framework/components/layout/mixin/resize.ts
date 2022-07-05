@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { DeviceType } from '@/store/modules/app'
-import { store } from '@/store'
+import store from '@/store'
 
 const WIDTH = 992 // refer to Bootstrap's responsive design
 
@@ -8,10 +8,10 @@ export default defineComponent({
   name: 'ResizeMixin',
   computed: {
     sidebar() {
-      return this.$store.state.app.sidebar
+      return store.state.app.sidebar
     },
     device() {
-      return this.$store.state.app.device
+      return store.state.app.device
     }
   },
   watch: {

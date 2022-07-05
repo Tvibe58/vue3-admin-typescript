@@ -1,6 +1,6 @@
 import { InjectionKey } from 'vue'
 import { createStore, Store, useStore as baseUseStore } from 'vuex'
-import { TypeRootState } from './type'
+import { TypeRootState, TypeAllState } from './type'
 import { moduleUser } from './modules/user'
 import { moduleApps } from './modules/app'
 
@@ -21,3 +21,9 @@ export const store = createStore<TypeRootState>({
 export function userStore<T = TypeRootState>() {
   return baseUseStore<T>(key)
 }
+
+// 扩展: 在***.ts文件中使用store模块
+interface TypeCustomStore extends Store<TypeRootState> {
+  state: TypeAllState;
+}
+export default store as unknown as TypeCustomStore
