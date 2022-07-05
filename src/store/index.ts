@@ -1,11 +1,11 @@
 import { InjectionKey } from 'vue'
 import { createStore, Store, useStore as baseUseStore } from 'vuex'
-import { TypeRootState, TypeAllState } from './type'
+import { TypeRootState } from './type'
 import { moduleUser } from './modules/user'
 import { moduleApps } from './modules/app'
 
 // 定义 injection key
-export const key: InjectionKey<Store<TypeAllState>> = Symbol('')
+export const key: InjectionKey<Store<TypeRootState>> = Symbol('')
 
 export const store = createStore<TypeRootState>({
   state: {
