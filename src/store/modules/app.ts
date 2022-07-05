@@ -3,9 +3,7 @@ import { TypeRootState } from '@/store/type'
 import Cookies from 'js-cookie'
 import {
   getSidebarStatus,
-  getSize,
-  setSidebarStatus,
-  setSize
+  setSidebarStatus
 } from '@/utils/cookies'
 export enum DeviceType {
   Mobile,
@@ -18,7 +16,6 @@ export interface TypeModuleStateApps {
     opened: boolean
     withoutAnimation: boolean
   };
-  size: string
 }
 
 export const moduleApps: Module<TypeModuleStateApps, TypeRootState> = {
@@ -27,8 +24,7 @@ export const moduleApps: Module<TypeModuleStateApps, TypeRootState> = {
     sidebar: {
       opened: getSidebarStatus() !== '0',
       withoutAnimation: false
-    },
-    size: 'medium'
+    }
   }),
   mutations: {
     TOGGLE_SIDEBAR: (state, withoutAnimation: boolean) => {

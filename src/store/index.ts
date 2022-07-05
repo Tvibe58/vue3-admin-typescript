@@ -9,7 +9,7 @@ export const key: InjectionKey<Store<TypeAllState>> = Symbol('')
 
 export const store = createStore<TypeRootState>({
   state: {
-    count: 2
+    count: 0
   },
   modules: {
     user: moduleUser,
@@ -17,6 +17,7 @@ export const store = createStore<TypeRootState>({
   }
 })
 
+// 定义自己的 `useStore` 组合式函数
 export function userStore<T = TypeRootState>() {
   return baseUseStore<T>(key)
 }
