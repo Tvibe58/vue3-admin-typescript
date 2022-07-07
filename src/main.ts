@@ -11,6 +11,7 @@ import plugin from '@/framework/components/svgIcon/plugin'
 import api from '@/framework/modules/api/make'
 import { Store } from 'vuex'
 import { TypeAllState } from '@/store/type'
+import '@/framework/modules/permission'
 
 const app = createApp(App)
 

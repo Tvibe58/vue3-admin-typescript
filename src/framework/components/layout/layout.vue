@@ -4,7 +4,7 @@
       hideSidebar: !sidebar.opened,
       openSidebar: sidebar.opened,
       withoutAnimation: sidebar.withoutAnimation,
-      mobile: device === 'mobile'
+      mobile: device === 'Mobile'
     }"
     class="app-wrapper"
   >
@@ -34,7 +34,7 @@ export default defineComponent({
       return this.$store.state.app.sidebar
     },
     device() {
-      return ''
+      return this.$store.state.app.device
     }
   }
 })

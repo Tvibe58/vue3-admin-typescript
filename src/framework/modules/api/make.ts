@@ -1,16 +1,9 @@
 import request from './request'
 import list from '@/api/entry'
 import { ElMessage } from 'element-plus'
+import { sleep } from '@/utils/index'
 
-// interface Target {
-//   name: string,
-//   url: string,
-//   unAuth: boolean,
-//   method: string,
-//   [propName: string]: any
-// }
-
-function getTarget(name: any) {
+function getTarget(name: string) {
   let target: any = list
   name.split('.').forEach((item: any) => {
     if (!target[item]) console.error(`'${name}' was not found in api module`)
@@ -18,6 +11,23 @@ function getTarget(name: any) {
   })
   if (target.name !== name) console.error(`Invalid name: ${name} !== ${target.name}`)
   return target
+}
+
+async function mockRequest(name: string, data = '') {
+  const target = getTarget(name)
+  const mockData = typeof target.mockData === 'function' ? target.mockData(data) : (target.mockData || null)
+
+  console.log(`%cMocking request:%c『${target.description}』「${name}」`, 'color: #8edf8e; background: #333; padding: 3px 0 3px 10px; border-radius: 3px 0 0 3px', 'color: #fff; background: #333; padding: 3px 10px 3px 0; border-radius: 0 3px 3px 0', data)
+
+  if (!mockData) console.log(`%cMocking response:『${target.description}』「${name}」 missing 'mockData' property`, 'color: #cab029; background: #333; padding: 3px 10px; border-radius: 3px')
+  else console.log(`%cMocking response:%c『${target.description}』「${name}」`, 'color: #cab029; background: #333; padding: 3px 0 3px 10px; border-radius: 3px 0 0 3px', 'color: #fff; background: #333; padding: 3px 10px 3px 0; border-radius: 0 3px 3px 0', mockData)
+
+  await sleep(880) // 加一丢丢延迟舒缓一下紧张的气氛
+
+  return {
+    success: true,
+    data: mockData
+  }
 }
 
 async function sendRequest(name: string, data = '') {
@@ -89,5 +99,6 @@ export default {
   install: function (app: any) {
     app.config.globalProperties.$api = (name: string, data: any) => sendRequest(name, data)
   },
+  mockRequest,
   sendRequest
 }
