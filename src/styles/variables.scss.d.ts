@@ -1,4 +1,5 @@
 export interface IScssVariables {
+  themeColor: string;
   menuText: string;
   menuActiveText: string;
   subMenuActiveText: string;
