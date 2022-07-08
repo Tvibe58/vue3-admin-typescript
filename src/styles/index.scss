@@ -73,8 +73,14 @@ a:hover {
 }
 
 .app-container {
-  // padding: 20px;
+  padding: 20px;
 }
+
+// nprogress 进度条样式
+#nprogress .bar {
+  background: $themeColor !important;
+}
+
 .filter-box {
   background: #fafafa;
   padding: 10px;

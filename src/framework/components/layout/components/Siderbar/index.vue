@@ -78,8 +78,12 @@ export default defineComponent({
     text-align: center;
     margin: 10px 0;
     .com-hamburger {
-      display: inline-block;
-      padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 36px;
+      height: 36px;
+      margin: 0 auto;
       cursor: pointer;
       border-radius: 50%;
       transition: background 0.3s;
