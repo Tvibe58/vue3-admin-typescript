@@ -126,7 +126,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$transformHeight: 900px;
+$transformHeight: 960px;
 $bgColor: #50a3a2;
 $bgColor2: #53e3a6;
 .app-login {
