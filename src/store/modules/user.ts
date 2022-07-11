@@ -32,7 +32,8 @@ export const moduleUser: Module<TypeModuleStateUser, TypeRootState> = {
   actions: {
     Login({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
-        api.sendRequest('user.login', userInfo).then((res: any) => {
+        // api.sendRequest('user.login', userInfo).then((res: any) => {
+        api.mockRequest('user.login', userInfo).then((res: any) => {
           const tokenValue = res.data.access_token
           storage.setItem('OAuthToken', tokenValue)
           commit('SET_TOKEN', tokenValue)

@@ -4,7 +4,10 @@ export default {
     description: '用户登录',
     method: 'POST',
     url: '/veeker-admin/backend/login/token',
-    unAuth: true
+    unAuth: true,
+    mockData: {
+      access_token: '124'
+    }
   },
   info: {
     name: 'user.info',
