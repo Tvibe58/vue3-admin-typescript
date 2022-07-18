@@ -152,7 +152,6 @@ $bgColor2: #53e3a6;
     width: 400px;
     max-width: 100%;
     padding: 35px 35px 15px 35px;
-    box-shadow: 0px 1px 12px #6e6d6d96;
     margin: 0 auto 0;
     background: #fff;
     border-radius: 4px;
