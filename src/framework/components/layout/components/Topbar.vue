@@ -10,7 +10,7 @@
           class="user-avatar"
         >
       </div>
-      <div class="title">&nbsp;&nbsp;&nbsp;后台管理系统</div>
+      <div class="title">&nbsp;后台管理系统</div>
     </div>
 
     <div class="right">

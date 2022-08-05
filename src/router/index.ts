@@ -2,29 +2,24 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Layout from '../framework/components/layout/layout.vue'
 
+/**
+ * path: '' 路由路径
+ * name: '' 路由名称
+ * meta: {
+ * title: '登录' 菜单名称
+ * icon: 'svg-name' svg图标名称
+ * hidden: true 是否在左侧菜单栏显示
+ * }
+ */
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'Login',
     component: () => import('../views/account/Login.vue'),
     meta: {
-      title: '登录',
-      icon: 'example'
+      hidden: true
     }
   },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  //   meta: {
-  //     title: '关于',
-  //     icon: 'example',
-  //     hidden: true
-  //   }
-  // },
   {
     path: '/',
     name: 'Root',
@@ -70,35 +65,6 @@ const routes: Array<RouteRecordRaw> = [
               title: 'ceshi-关于2',
               icon: 'example'
             }
-          },
-          {
-            path: '/about88',
-            name: 'Abouts88',
-            component: Layout,
-            meta: {
-              title: 'ce-关于2',
-              icon: 'example'
-            },
-            children: [
-              {
-                path: '/about',
-                name: 'Abouts123',
-                component: () => import('../views/About.vue'),
-                meta: {
-                  title: 'ceshi-关于',
-                  icon: 'example'
-                }
-              },
-              {
-                path: '/about23',
-                name: 'Abouts23',
-                component: () => import('../views/About.vue'),
-                meta: {
-                  title: 'ceshi-关于223456',
-                  icon: 'example'
-                }
-              }
-            ]
           }
         ]
       },
@@ -108,108 +74,22 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/About.vue'),
         meta: {
           title: '关于',
-          icon: 'example'
+          icon: 'guide'
         }
-      },
-      {
-        path: '/about6',
-        name: 'About6',
-        component: () => import('../views/About.vue'),
-        meta: {
-          title: '关于',
-          icon: 'example'
-        },
-        children: [
-          {
-            path: '/about66',
-            name: 'About66',
-            component: () => import('../views/About.vue'),
-            meta: {
-              title: '关于',
-              icon: 'example'
-            }
-          }
-        ]
       }
     ]
   },
-  // {
-  //   path: '/test1',
-  //   name: 'Test',
-  //   component: Layout,
-  //   meta: {
-  //     title: '测试',
-  //     icon: 'example'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'test1',
-  //       name: 'Test1',
-  //       component: Home,
-  //       meta: {
-  //         title: '测试',
-  //         icon: 'example'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/test2',
-  //   name: 'Home2',
-  //   component: Layout,
-  //   meta: {
-  //     title: '测试2-2child',
-  //     icon: 'example'
-  //   },
-  //   children: [
-  //     {
-  //       path: '/about',
-  //       name: 'Abouts',
-  //       component: () => import('../views/About.vue'),
-  //       meta: {
-  //         title: 'ceshi-关于',
-  //         icon: 'example'
-  //       }
-  //     },
-  //     {
-  //       path: '/about2',
-  //       name: 'Abouts2',
-  //       component: () => import('../views/About.vue'),
-  //       meta: {
-  //         title: 'ceshi-关于2',
-  //         icon: 'example'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/about1',
-  //   name: 'About1',
-  //   component: () => import('../views/About.vue'),
-  //   meta: {
-  //     title: '关于',
-  //     icon: 'example'
-  //   }
-  // },
   {
-    path: '/about7',
-    name: 'About7',
-    component: Layout,
+    path: '/404',
+    name: '404',
+    component: () => import('../views/NotFound.vue'),
     meta: {
-      title: '关于7',
-      icon: 'example'
-    },
-    children: [
-      {
-        path: '/about77',
-        name: 'About77',
-        component: () => import('../views/About.vue'),
-        meta: {
-          title: '关于77',
-          icon: 'example'
-        }
-      }
-    ]
+      hidden: true
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404'
   }
 ]
 
