@@ -56,7 +56,7 @@ export default defineComponent({
       // 重构
       let newRoute: any = []
       this.$router.options.routes.forEach((route: any) => {
-        if (route.meta.isRoot) {
+        if (route.meta && route.meta.isRoot) {
           newRoute = newRoute.concat(route.children)
         } else newRoute.push(route)
       })
