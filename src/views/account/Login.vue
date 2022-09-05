@@ -50,7 +50,7 @@
         <el-form-item>
           <el-button
             type="primary"
-            color="#009688"
+            color="#337ecc"
             style="width:100%;"
             :loading="loading"
             @click="handleLogin(loginFormRef)"
@@ -127,12 +127,12 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 $transformHeight: 960px;
-$bgColor: #50a3a2;
-$bgColor2: #53e3a6;
+$bgColor: #3c73ae;
+$bgColor2: #409EFF;
 .app-login {
-  background: #009688;
-  background: -webkit-linear-gradient(top left, $bgColor 0%, $bgColor2 100%);
-  background: linear-gradient(to bottom right, $bgColor 0%, $bgColor2 100%);
+  background: #3c73ae;
+  /* background: -webkit-linear-gradient(top left, $bgColor 0%, $bgColor2 100%);
+  background: linear-gradient(to bottom right, $bgColor 0%, $bgColor2 100%); */
   opacity: 0.8;
   position: absolute;
   left: 0;
