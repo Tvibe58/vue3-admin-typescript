@@ -6,13 +6,28 @@
         :key="i"
       ></li>
     </ul>
-    <div>
+    <div class="content">
       <h2>404</h2>
 
       <h1>Page Not Found !</h1>
+      <el-button
+        plain
+        @click="goToHome"
+      >返回首页</el-button>
     </div>
   </div>
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  methods: {
+    goToHome() {
+      this.$router.push({ path: '/' })
+    }
+  }
+})
+</script>
+
 <style lang="scss" scoped>
 $transformHeight: 960px;
 $bgColor: #50a3a2;
@@ -36,6 +51,11 @@ $bgColor2: #53e3a6;
     font-size: 100px;
     letter-spacing: 2px;
     font-weight: 700;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
   }
 
   .bg-bubbles {
