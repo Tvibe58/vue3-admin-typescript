@@ -30,8 +30,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 $transformHeight: 960px;
-$bgColor: #50a3a2;
-$bgColor2: #53e3a6;
+$bgColor: #3c73ae;
+$bgColor2: #409EFF;
 .not-found {
   width: 100%;
   min-height: 100vh;

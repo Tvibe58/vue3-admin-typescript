@@ -88,7 +88,7 @@ export default defineComponent({
       border-radius: 50%;
       transition: background 0.3s;
       &:hover {
-        background: #35485d;
+        background: #35485da0;
       }
       svg {
         fill: #fff;
