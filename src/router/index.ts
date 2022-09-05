@@ -31,11 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: '/test1',
+        path: '/example',
         name: 'Home',
-        component: Home,
+        component: () => import('../views/Example.vue'),
         meta: {
-          title: '测试',
+          title: '示例',
           icon: 'example'
         }
       },

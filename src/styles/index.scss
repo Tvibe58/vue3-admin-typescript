@@ -3,6 +3,7 @@
 @import './transition.scss';
 @import './sidebar.scss';
 @import './topbar.scss';
+@import './element.scss';
 
 html {
   height: 100%;
@@ -73,7 +74,7 @@ a:hover {
 }
 
 .app-container {
-  padding: 20px;
+  // padding: 20px;
 }
 
 // nprogress 进度条样式
