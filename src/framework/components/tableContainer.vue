@@ -281,7 +281,7 @@ export default {
       this.selectedKeyValue = val
       this.$emit('select-option', this.selectedKeyValue)
     },
-    handleClick(tab, event) {
+    handleClick(tab) {
       this.activeName = tab.name
       this.$emit('change-tab', this.activeName)
     }
