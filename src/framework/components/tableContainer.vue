@@ -509,9 +509,6 @@ export default {
       color: #fff;
       border: 1px solid #0279ff;
     }
-    .el-table td {
-      // padding: 6px 0;
-    }
     .el-pagination__jump {
       margin-right: 5px;
     }
